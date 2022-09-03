@@ -1,7 +1,3 @@
-<script setup>
-</script>
+<script setup></script>
 
-<template>
-  
-</template>
-
+<template>Hello</template>
