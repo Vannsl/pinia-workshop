@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from "vue";
 import {
   Chart,
@@ -90,7 +90,6 @@ onMounted(() => {
           data: [65, 59, 80, 81, 56, 55, 40],
           fill: false,
           borderColor: "rgb(75, 192, 192)",
-          lineTension: 0.1,
         },
       ],
     },
@@ -104,7 +103,6 @@ onMounted(() => {
         {
           label: "Likes",
           data: [65, 59, 80, 81, 56, 55, 40],
-          fill: false,
           backgroundColor: [
             "rgba(255, 99, 132, 0.2)",
             "rgba(255, 159, 64, 0.2)",
@@ -126,17 +124,6 @@ onMounted(() => {
           borderWidth: 1,
         },
       ],
-    },
-    options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
     },
   });
   new Chart(graphs[3].ref.value, {
@@ -175,17 +162,6 @@ onMounted(() => {
           borderColor: "rgb(54, 162, 235)",
         },
       ],
-    },
-    options: {
-      scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
-      },
     },
   });
 });

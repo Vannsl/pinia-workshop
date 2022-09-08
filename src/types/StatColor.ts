@@ -1,0 +1,1 @@
+export type StatColor = "blue" | "green" | "indigo" | "pink" | "red" | "yellow";

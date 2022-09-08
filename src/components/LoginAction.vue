@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import BaseButton from "./base/BaseButton.vue";
 </script>
 

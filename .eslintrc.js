@@ -1,11 +1,13 @@
+/* eslint-env node */
 module.exports = {
-  env: {
-    node: true,
-  },
+  root: true,
   extends: [
-    'eslint:recommended',
-    "plugin:vue/vue3-recommended",
-    "prettier"
+    "plugin:vue/vue3-essential",
+    "eslint:recommended",
+    "@vue/eslint-config-typescript/recommended",
+    "@vue/eslint-config-prettier",
   ],
-  rules: {}
-}
+  env: {
+    "vue/setup-compiler-macros": true,
+  },
+};

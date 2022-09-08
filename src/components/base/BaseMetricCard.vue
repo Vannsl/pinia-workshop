@@ -1,18 +1,11 @@
-<script setup>
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  colorTheme: {
-    type: String,
-    required: true,
-  },
-  iconName: {
-    type: String,
-    required: true,
-  },
-});
+<script setup lang="ts">
+import type { StatColor } from "@/types/StatColor";
+
+const props = defineProps<{
+  title: string;
+  colorTheme: StatColor;
+  iconName: string;
+}>();
 
 const colorDlClassesConfig = {
   blue: "from-blue-200 to-blue-100 border-blue-500",
