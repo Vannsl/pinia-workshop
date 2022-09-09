@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { shallowRef, watchEffect, type ComponentPublicInstance } from "vue";
+import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
 
-type ConfigSlug = "light" | "dark";
-
 interface ConfigSettings {
-  slug: ConfigSlug;
+  slug: ColorSchemeSlug;
   component: ComponentPublicInstance;
   ariaLabel: string;
-  nextConfigSlug: ConfigSlug;
+  nextConfigSlug: ColorSchemeSlug;
 }
 
-const config: Record<ConfigSlug, ConfigSettings> = {
+const config: Record<ColorSchemeSlug, ConfigSettings> = {
   light: {
     slug: "light",
     component: IconSun,
