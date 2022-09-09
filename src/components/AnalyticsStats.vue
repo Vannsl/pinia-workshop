@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import type { StatColor } from "@/types/StatColor";
 import BaseMetricCard from "@/components/base/BaseMetricCard.vue";
+import { useStatisticStore } from "@/stores/useStatisticStore";
+
+const store = useStatisticStore();
 </script>
 
 <template>
   <ul class="flex flex-wrap">
     <li
-      v-for="stat in stats"
+      v-for="stat in store.stats"
       :key="stat.id"
       class="w-full md:w-1/2 xl:w-1/3 p-6"
     >
