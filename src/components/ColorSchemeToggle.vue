@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { computed, ref, watch, type ComponentPublicInstance } from "vue";
+import { computed, watch, type ComponentPublicInstance } from "vue";
+import { storeToRefs } from "pinia";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
+import { useColorSchemeStore } from "@/stores/useColorSchemeStore";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
 
@@ -9,6 +11,9 @@ interface ConfigSettings {
   ariaLabel: string;
   nextConfigSlug: ColorSchemeSlug;
 }
+
+const colorSchemeStore = useColorSchemeStore();
+const { currentColorSchemeSlug } = storeToRefs(colorSchemeStore);
 
 const config: Record<ColorSchemeSlug, ConfigSettings> = {
   light: {
@@ -23,7 +28,6 @@ const config: Record<ColorSchemeSlug, ConfigSettings> = {
   },
 };
 
-const currentColorSchemeSlug = ref<ColorSchemeSlug>("light");
 const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
 
 watch(currentColorSchemeSlug, (value) => {
@@ -36,7 +40,7 @@ watch(currentColorSchemeSlug, (value) => {
 });
 
 function handleClick() {
-  currentColorSchemeSlug.value = currentConfig.value.nextConfigSlug;
+  colorSchemeStore.updateColorScheme(currentConfig.value.nextConfigSlug);
 }
 </script>
 
