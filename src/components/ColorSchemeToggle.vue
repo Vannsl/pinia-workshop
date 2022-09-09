@@ -2,7 +2,7 @@
 import { computed, watch, type ComponentPublicInstance } from "vue";
 import { storeToRefs } from "pinia";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
-import { useColorSchemeStore } from "@/stores/useColorSchemeStore";
+import { useColorSchemeStore, storageKey } from "@/stores/useColorSchemeStore";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
 
@@ -30,14 +30,19 @@ const config: Record<ColorSchemeSlug, ConfigSettings> = {
 
 const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
 
-watch(currentColorSchemeSlug, (value) => {
-  if (value === "light") {
-    document.getElementsByTagName("html")[0].classList.remove("dark");
-  }
-  if (value === "dark") {
-    document.getElementsByTagName("html")[0].classList.add("dark");
-  }
-});
+watch(
+  currentColorSchemeSlug,
+  (value) => {
+    if (value === "light") {
+      document.getElementsByTagName("html")[0].classList.remove("dark");
+    }
+    if (value === "dark") {
+      document.getElementsByTagName("html")[0].classList.add("dark");
+    }
+    localStorage.setItem(storageKey, JSON.stringify(value));
+  },
+  { immediate: true }
+);
 
 function handleClick() {
   colorSchemeStore.updateColorScheme(currentConfig.value.nextConfigSlug);
