@@ -22,7 +22,7 @@ const isUserLoggedIn = ref(true);
             <AnalyticsGraphs />
           </template>
           <p v-else class="text-center mx-4 py-8 dark:text-white">
-            You have to be logged in to see Analytics.
+            You have to be logged in to see this page.
           </p>
         </div>
       </section>
