@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { shallowRef, watchEffect, type ComponentPublicInstance } from "vue";
+import { computed, ref, watch, type ComponentPublicInstance } from "vue";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
 
 interface ConfigSettings {
-  slug: ColorSchemeSlug;
   component: ComponentPublicInstance;
   ariaLabel: string;
   nextConfigSlug: ColorSchemeSlug;
@@ -13,32 +12,31 @@ interface ConfigSettings {
 
 const config: Record<ColorSchemeSlug, ConfigSettings> = {
   light: {
-    slug: "light",
     component: IconSun,
     ariaLabel: "Toggle color scheme, current light",
     nextConfigSlug: "dark",
   },
   dark: {
-    slug: "dark",
     component: IconMoon,
     ariaLabel: "Toggle color scheme, current dark",
     nextConfigSlug: "light",
   },
 };
 
-const currentConfig = shallowRef(config.light);
+const currentColorSchemeSlug = ref<ColorSchemeSlug>("light");
+const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
 
-watchEffect(() => {
-  if (currentConfig.value.slug === "light") {
+watch(currentColorSchemeSlug, (value) => {
+  if (value === "light") {
     document.getElementsByTagName("html")[0].classList.remove("dark");
   }
-  if (currentConfig.value.slug === "dark") {
+  if (value === "dark") {
     document.getElementsByTagName("html")[0].classList.add("dark");
   }
 });
 
 function handleClick() {
-  currentConfig.value = config[currentConfig.value.nextConfigSlug];
+  currentColorSchemeSlug.value = currentConfig.value.nextConfigSlug;
 }
 </script>
 
