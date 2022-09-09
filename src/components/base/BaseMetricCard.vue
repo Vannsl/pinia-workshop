@@ -10,7 +10,7 @@ const props = defineProps<{
 const colorDlClassesConfig = {
   blue: "from-blue-200 to-blue-100 border-blue-500",
   green: "from-green-200 to-green-100 border-green-600",
-  indigo: "from-indigo-200 to-indigo-100 border-indigo-500 ",
+  indigo: "from-indigo-200 to-indigo-100 border-indigo-500",
   pink: "from-pink-200 to-pink-100 border-pink-500",
   red: "from-red-200 to-red-100 border-red-500",
   yellow: "from-yellow-200 to-yellow-100 border-yellow-600",
