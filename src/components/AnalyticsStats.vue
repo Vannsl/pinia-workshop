@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { StatColor } from "@/types/StatColor";
-import stats from "@/data/stats.json";
 import BaseMetricCard from "@/components/base/BaseMetricCard.vue";
 </script>
 
