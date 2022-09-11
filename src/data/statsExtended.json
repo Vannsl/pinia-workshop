@@ -1,0 +1,44 @@
+[
+  {
+      "id": 1,
+      "title": "Today's Revenue",
+      "colorTheme": "green",
+      "iconName": "fa-wallet",
+      "value": "$899"
+  },
+  {
+      "id": 2,
+      "title": "Active Users",
+      "colorTheme": "pink",
+      "iconName": "fa-users",
+      "value": "1"
+  },
+  {
+      "id": 3,
+      "title": "New Users",
+      "colorTheme": "yellow",
+      "iconName": "fa-user-plus",
+      "value": "2"
+  },
+  {
+      "id": 4,
+      "title": "Server Uptime",
+      "colorTheme": "blue",
+      "iconName": "fa-server",
+      "value": "152 days"
+  },
+  {
+      "id": 5,
+      "title": "To Do List",
+      "colorTheme": "indigo",
+      "iconName": "fa-tasks",
+      "value": "7 tasks"
+  },
+  {
+      "id": 6,
+      "title": "Issues",
+      "colorTheme": "red",
+      "iconName": "fa-inbox",
+      "value": "3"
+  }
+]
