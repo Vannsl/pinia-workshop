@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import BaseButton from "./base/BaseButton.vue";
 import IconUser from "./icons/IconUser.vue";
 import IconUserPlus from "./icons/IconUserPlus.vue";
 
