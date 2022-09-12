@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import LoginAction from "./LoginAction.vue";
 import ColorSchemeToggle from "./ColorSchemeToggle.vue";
+import LanguageToggle from "./LanguageToggle.vue";
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -16,14 +20,17 @@ import ColorSchemeToggle from "./ColorSchemeToggle.vue";
         >
           <a href="#" aria-label="Home" class="flex items-center gap-4">
             <img src="/pinia.svg" alt="Pinia logo" width="24" height="24" />
-            Pinia Workshop
+            {{ t("pinia_workshop") }}
           </a>
         </div>
 
         <div
           class="flex flex-1 md:w-1/3 justify-center md:justify-start dark:text-white px-2"
         >
-          <ColorSchemeToggle class="mx-auto" />
+          <div class="mx-auto flex gap-4">
+            <ColorSchemeToggle />
+            <LanguageToggle />
+          </div>
         </div>
 
         <div

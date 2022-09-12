@@ -41,7 +41,11 @@ function handleClick() {
 </script>
 
 <template>
-  <button type="button" @click="handleClick">
+  <button
+    type="button"
+    @click="handleClick"
+    class="bg-gray-100 dark:bg-gray-700 rounded p-2"
+  >
     <component
       :is="currentConfig.component"
       :aria-label="currentConfig.ariaLabel"

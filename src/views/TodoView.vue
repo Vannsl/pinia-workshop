@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { ref } from "vue";
 import MainHeader from "@/components/MainHeader.vue";
+
+const { t } = useI18n();
 
 const isUserAuthenticated = ref(true);
 </script>
 
 <template>
-  <MainHeader title="Todo list" color-theme="purple" />
+  <MainHeader :title="t('todo_list')" color-theme="purple" />
   <div v-if="isUserAuthenticated" />
   <p v-else class="mt-6 text-center">
-    You have to be logged in to see this page.
+    {{ t("authenticate_as_user_to_access") }}
   </p>
 </template>

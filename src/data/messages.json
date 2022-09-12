@@ -1,0 +1,24 @@
+{
+  "en": {
+    "pinia_workshop": "Pinia Workshop",
+    "statistics": "Statistics",
+    "active_users": "Active Users",
+    "todo_list": "To do list",
+    "tasks": "Tasks",
+    "authenticate_as_user_to_access": "You have to be logged in to see this page.",
+    "authenticate_as_admin_to_access": "You have to be logged in as an admin user to see this page.",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "de": {
+    "pinia_workshop": "Pinia Schulung",
+    "statistics": "Statistiken",
+    "active_users": "Aktive Nutzer",
+    "todo_list": "To-do Liste",
+    "tasks": "Aufgaben",
+    "authenticate_as_user_to_access": "Du musst eingeloggt sein, um diese Seite zu sehen.",
+    "authenticate_as_admin_to_access": "Du musst dich als Admin verifizieren, um diese Seite zu sehen.",
+    "login": "Anmelden",
+    "logout": "Abmelden"
+  }
+}

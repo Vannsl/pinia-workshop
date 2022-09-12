@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
+</script>
 
 <template>
   <nav aria-label="alternative nav">
@@ -13,26 +17,28 @@
         >
           <li class="mr-3 flex-1">
             <router-link
-              class="block py-1 md:py-3 pl-1 align-middle dark:text-white no-underline border-b-2 border-gray-800 hover:border-pink-600"
+              class="block py-1 md:py-3 pl-1 align-middle dark:text-white no-underline border-b-2 border-transparent hover:border-pink-600"
               to="/"
             >
-              <i class="fas fa-chart-area pr-0 md:pr-3 text-pink-600"></i
-              ><span
+              <i class="fas fa-chart-area pr-0 md:pr-3 text-pink-600" />
+              <span
                 class="pb-1 md:pb-0 text-xs md:text-base dark:text-white block md:inline-block"
-                >Analytics</span
               >
+                {{ t("statistics") }}
+              </span>
             </router-link>
           </li>
           <li class="mr-3 flex-1">
             <router-link
               to="/todo"
-              class="block py-1 md:py-3 pl-1 align-middle dark:text-white no-underline border-b-2 border-gray-800 hover:border-purple-500"
+              class="block py-1 md:py-3 pl-1 align-middle dark:text-white no-underline border-b-2 border-transparent hover:border-purple-500"
             >
-              <i class="fa fa-tasks pr-0 md:pr-3"></i
-              ><span
+              <i class="fa fa-tasks pr-0 md:pr-3 text-purple-500" />
+              <span
                 class="pb-1 md:pb-0 text-xs md:text-base dark:text-gray-200 block md:inline-block"
-                >Todo List</span
               >
+                {{ t("todo_list") }}
+              </span>
             </router-link>
           </li>
         </ul>
