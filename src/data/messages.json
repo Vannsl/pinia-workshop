@@ -8,7 +8,12 @@
     "authenticate_as_user_to_access": "You have to be logged in to see this page.",
     "authenticate_as_admin_to_access": "You have to be logged in as an admin user to see this page.",
     "login": "Login",
-    "logout": "Logout"
+    "logout": "Logout",
+    "language_selection": "Language selection",
+    "color_scheme_selection": "Color scheme selection",
+    "open_color_scheme_menu": "Open color scheme menu",
+    "color_scheme_light_mode": "Light",
+    "color_scheme_dark_mode": "Dark"
   },
   "de": {
     "pinia_workshop": "Pinia Schulung",
@@ -19,6 +24,11 @@
     "authenticate_as_user_to_access": "Du musst eingeloggt sein, um diese Seite zu sehen.",
     "authenticate_as_admin_to_access": "Du musst dich als Admin verifizieren, um diese Seite zu sehen.",
     "login": "Anmelden",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "language_selection": "Sprache auswählen",
+    "color_scheme_selection": "Erscheinung auswählen",
+    "open_color_scheme_menu": "Erscheinungsmenü öffnen",
+    "color_scheme_light_mode": "Hell",
+    "color_scheme_dark_mode": "Dunkel"
   }
 }
