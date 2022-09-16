@@ -1,25 +1,29 @@
 <script setup lang="ts">
 import { computed, ref, watch, type ComponentPublicInstance } from "vue";
+import Popper from "vue3-popper";
+import { useI18n } from "vue-i18n";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
 
 interface ConfigSettings {
+  slug: ColorSchemeSlug;
   component: ComponentPublicInstance;
-  ariaLabel: string;
-  nextConfigSlug: ColorSchemeSlug;
+  label: string;
 }
+
+const { t } = useI18n();
 
 const config: Record<ColorSchemeSlug, ConfigSettings> = {
   light: {
+    slug: "light",
     component: IconSun,
-    ariaLabel: "Toggle color scheme, current light",
-    nextConfigSlug: "dark",
+    label: t("color_scheme_light_mode"),
   },
   dark: {
+    slug: "dark",
     component: IconMoon,
-    ariaLabel: "Toggle color scheme, current dark",
-    nextConfigSlug: "light",
+    label: t("color_scheme_dark_mode"),
   },
 };
 
@@ -34,21 +38,43 @@ watch(currentColorSchemeSlug, (value) => {
     document.getElementsByTagName("html")[0].classList.add("dark");
   }
 });
-
-function handleClick() {
-  currentColorSchemeSlug.value = currentConfig.value.nextConfigSlug;
-}
 </script>
 
 <template>
-  <button
-    type="button"
-    @click="handleClick"
-    class="bg-gray-100 dark:bg-gray-700 rounded p-2"
-  >
-    <component
-      :is="currentConfig.component"
-      :aria-label="currentConfig.ariaLabel"
-    />
-  </button>
+  <Popper>
+    <button type="button" class="bg-gray-100 dark:bg-gray-700 rounded p-2">
+      <component
+        :is="currentConfig.component"
+        :aria-label="t('open_color_scheme_menu')"
+      />
+    </button>
+    <template #content>
+      <fieldset class="tw-pr-4">
+        <legend class="sr-only">
+          {{ t("color_scheme_selection") }}
+        </legend>
+        <div
+          v-for="colorScheme in Object.values(config)"
+          :key="colorScheme.slug"
+          class="py-2"
+        >
+          <input
+            v-model="currentColorSchemeSlug"
+            type="radio"
+            :id="colorScheme.slug"
+            :value="colorScheme.slug"
+            name="colorSchemeSelection"
+            class="hidden"
+          />
+          <label
+            :for="colorScheme.slug"
+            class="cursor-pointer hover:text-blue-500 dark:hover:text-blue-200 flex gap-2 font-semibold"
+          >
+            <component :is="colorScheme.component" />
+            {{ colorScheme.label }}
+          </label>
+        </div>
+      </fieldset>
+    </template>
+  </Popper>
 </template>
