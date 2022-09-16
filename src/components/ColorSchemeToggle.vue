@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed, type ComponentPublicInstance } from "vue";
+import { computed, watch, type ComponentPublicInstance } from "vue";
 import Popper from "vue3-popper";
 import { useI18n } from "vue-i18n";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
+import { useColorSchemeStore, storageKey } from "@/stores/useColorSchemeStore";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
+import { storeToRefs } from "pinia";
 
 interface ConfigSettings {
   slug: ColorSchemeSlug;
@@ -27,20 +29,25 @@ const config: Record<ColorSchemeSlug, ConfigSettings> = {
   },
 };
 
-const currentConfig = computed(() => config["light"]);
+const { currentColorSchemeSlug } = storeToRefs(useColorSchemeStore());
 
-/*
-  Execute the following code to add or remove the CSS class 'dark'.
-  Hint: When watching or subscribing to a store state.
-  ------------------------
-  if (value === "light") {
-    document.getElementsByTagName("html")[0].classList.remove("dark");
+const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
+
+watch(
+  currentColorSchemeSlug,
+  (value) => {
+    if (value === "light") {
+      document.getElementsByTagName("html")[0].classList.remove("dark");
+    }
+    if (value === "dark") {
+      document.getElementsByTagName("html")[0].classList.add("dark");
+    }
+    localStorage.setItem(storageKey, value);
+  },
+  {
+    immediate: true,
   }
-  if (value === "dark") {
-    document.getElementsByTagName("html")[0].classList.add("dark");
-  }
-  ------------------------
-*/
+);
 </script>
 
 <template>
@@ -63,6 +70,7 @@ const currentConfig = computed(() => config["light"]);
         >
           <input
             type="radio"
+            v-model="currentColorSchemeSlug"
             :id="colorScheme.slug"
             :value="colorScheme.slug"
             name="colorSchemeSelection"
