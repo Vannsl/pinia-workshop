@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, type ComponentPublicInstance } from "vue";
+import { computed, type ComponentPublicInstance } from "vue";
 import Popper from "vue3-popper";
 import { useI18n } from "vue-i18n";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
@@ -27,17 +27,20 @@ const config: Record<ColorSchemeSlug, ConfigSettings> = {
   },
 };
 
-const currentColorSchemeSlug = ref<ColorSchemeSlug>("light");
-const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
+const currentConfig = computed(() => config["light"]);
 
-watch(currentColorSchemeSlug, (value) => {
+/*
+  Execute the following code to add or remove the CSS class 'dark'.
+  Hint: When watching or subscribing to a store state.
+  ------------------------
   if (value === "light") {
     document.getElementsByTagName("html")[0].classList.remove("dark");
   }
   if (value === "dark") {
     document.getElementsByTagName("html")[0].classList.add("dark");
   }
-});
+  ------------------------
+*/
 </script>
 
 <template>
@@ -59,7 +62,6 @@ watch(currentColorSchemeSlug, (value) => {
           class="py-2"
         >
           <input
-            v-model="currentColorSchemeSlug"
             type="radio"
             :id="colorScheme.slug"
             :value="colorScheme.slug"
