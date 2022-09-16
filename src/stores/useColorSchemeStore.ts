@@ -15,6 +15,12 @@ export const useColorSchemeStore = defineStore("ColorScheme", {
         .value as ColorSchemeSlug,
     };
   },
+  actions: {
+    setColorSchemeSlug(value: ColorSchemeSlug) {
+      this.currentColorSchemeSlug = value;
+      localStorage.setItem(storageKey, value);
+    },
+  },
 });
 
 if (import.meta.hot) {

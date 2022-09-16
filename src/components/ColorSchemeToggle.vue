@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { computed, watch, type ComponentPublicInstance } from "vue";
+import { computed, toRef, watch, type ComponentPublicInstance } from "vue";
 import Popper from "vue3-popper";
 import { useI18n } from "vue-i18n";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
-import { useColorSchemeStore, storageKey } from "@/stores/useColorSchemeStore";
+import { useColorSchemeStore } from "@/stores/useColorSchemeStore";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
-import { storeToRefs } from "pinia";
 
 interface ConfigSettings {
   slug: ColorSchemeSlug;
@@ -29,7 +28,11 @@ const config: Record<ColorSchemeSlug, ConfigSettings> = {
   },
 };
 
-const { currentColorSchemeSlug } = storeToRefs(useColorSchemeStore());
+const colorSchemeStore = useColorSchemeStore();
+const currentColorSchemeSlug = toRef(
+  colorSchemeStore,
+  "currentColorSchemeSlug"
+);
 
 const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
 
@@ -42,7 +45,7 @@ watch(
     if (value === "dark") {
       document.getElementsByTagName("html")[0].classList.add("dark");
     }
-    localStorage.setItem(storageKey, value);
+    colorSchemeStore.setColorSchemeSlug(value);
   },
   {
     immediate: true,
