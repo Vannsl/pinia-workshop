@@ -13,7 +13,12 @@
     "color_scheme_selection": "Color scheme selection",
     "open_color_scheme_menu": "Open color scheme menu",
     "color_scheme_light_mode": "Light",
-    "color_scheme_dark_mode": "Dark"
+    "color_scheme_dark_mode": "Dark",
+    "add": "Add",
+    "no_todos_yet": "Add your first Todo!",
+    "your_items": "Your items",
+    "deleted_items": "Deleted items",
+    "delete": "Delete"
   },
   "de": {
     "pinia_workshop": "Pinia Schulung",
@@ -29,6 +34,11 @@
     "color_scheme_selection": "Erscheinung auswählen",
     "open_color_scheme_menu": "Erscheinungsmenü öffnen",
     "color_scheme_light_mode": "Hell",
-    "color_scheme_dark_mode": "Dunkel"
+    "color_scheme_dark_mode": "Dunkel",
+    "add": "Hinzufügen",
+    "no_todos_yet": "Füge dein erstes Todo hinzu!",
+    "your_items": "Deine Todos",
+    "deleted_items": "Gelöschte Todos",
+    "delete": "Löschen"
   }
 }
