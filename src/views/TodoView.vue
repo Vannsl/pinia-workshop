@@ -14,7 +14,7 @@ const isUserAuthenticated = ref(true);
   <MainHeader :title="t('todo_list')" color-theme="purple" />
   <div
     v-if="isUserAuthenticated"
-    class="mx-auto my-6 w-[450px] max-w-full flex flex-col gap-4"
+    class="mx-auto my-6 w-[450px] max-w-full flex flex-col gap-4 dark:text-white"
   >
     <TodoForm />
     <TodoList />

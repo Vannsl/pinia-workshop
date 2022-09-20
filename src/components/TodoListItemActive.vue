@@ -11,7 +11,9 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <label class="flex justify-between gap-4 p-2 rounded hover:bg-gray-200">
+  <label
+    class="group flex justify-between gap-4 p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-800"
+  >
     <div>
       <input
         class="accent-blue-500 dark:accent-blue-200 mr-2"
@@ -26,7 +28,7 @@ const { t } = useI18n();
       </span>
     </div>
     <button
-      class="hover:text-blue-500 dark:hover:text-blue-200"
+      class="group-hover:visible invisible hover:text-blue-500 dark:hover:text-blue-200"
       type="button"
       @click.stop="$emit('on-delete', todoItem.id)"
     >
