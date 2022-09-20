@@ -1,24 +1,25 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import type { TodoItem } from "@/types/TodoItem";
+import todoItems from "@/data/todoItems.json";
 import TodoListItemActive from "./TodoListItemActive.vue";
 import TodoListItemArchived from "./TodoListItemArchived.vue";
 
 const { t } = useI18n();
 
-const hasTodoItems = true;
-const hasActiveTodoItems = true;
-const hasArchivedTodoItems = true;
+const hasTodoItems = computed(() => todoItems.length > 0);
 
-const activeTodoItems: TodoItem[] = [
-  { id: 1, value: "Buy groceries", isCompleted: false, isArchived: false },
-  { id: 2, value: "Do taxes", isCompleted: true, isArchived: false },
-];
+const activeTodoItems = computed(() =>
+  todoItems
+    .filter(({ isArchived }) => !isArchived)
+    .sort((item) => (item.isCompleted ? 1 : -1))
+);
+const archivedTodoItems = computed(() =>
+  todoItems.filter(({ isArchived }) => isArchived)
+);
 
-const archivedTodoItems: TodoItem[] = [
-  { id: 3, value: "Pet cats", isCompleted: true, isArchived: true },
-  { id: 3, value: "Wash car", isCompleted: false, isArchived: true },
-];
+const hasActiveTodoItems = computed(() => activeTodoItems.value.length > 0);
+const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
 </script>
 
 <template>

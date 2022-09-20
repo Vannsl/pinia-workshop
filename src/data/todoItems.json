@@ -1,0 +1,6 @@
+[
+  { "id": 1, "value": "Buy groceries", "isCompleted": false, "isArchived": false },
+  { "id": 2, "value": "Feed pet", "isCompleted": true, "isArchived": false },
+  { "id": 2, "value": "Do taxes", "isCompleted": true, "isArchived": true },
+  { "id": 2, "value": "Wash car", "isCompleted": false, "isArchived": false }
+]
