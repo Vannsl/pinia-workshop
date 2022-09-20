@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import { useTodoListStore } from "@/stores/useTodoListStore";
 import BaseButton from "./base/BaseButton.vue";
 
 const { t } = useI18n();
+
+const todoListStore = useTodoListStore();
 
 const newItem = ref("");
 
@@ -13,7 +16,7 @@ function handleSubmit() {
 
   newItem.value = "";
 
-  // TODO
+  todoListStore.addItem(trimmedValue);
 }
 </script>
 

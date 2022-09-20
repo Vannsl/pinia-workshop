@@ -1,25 +1,27 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import todoItems from "@/data/todoItems.json";
+import { useTodoListStore } from "@/stores/useTodoListStore";
 import TodoListItemActive from "./TodoListItemActive.vue";
 import TodoListItemArchived from "./TodoListItemArchived.vue";
 
 const { t } = useI18n();
 
-const hasTodoItems = computed(() => todoItems.length > 0);
+const todoListStore = useTodoListStore();
+
+const hasTodoItems = computed(() => todoListStore.todoItems.length > 0);
 
 const activeTodoItems = computed(() =>
-  todoItems
+  todoListStore.todoItems
     .filter(({ isArchived }) => !isArchived)
     .sort((item) => (item.isCompleted ? 1 : -1))
 );
 const archivedTodoItems = computed(() =>
-  todoItems.filter(({ isArchived }) => isArchived)
+  todoListStore.todoItems.filter(({ isArchived }) => isArchived)
 );
 
-const hasActiveTodoItems = computed(() => activeTodoItems.value.length > 0);
-const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
+const hasActiveTodoItems = computed(() => todoListStore.todoItems.length > 0);
+const hasArchivedTodoItems = computed(() => todoListStore.todoItems.length > 0);
 </script>
 
 <template>
@@ -32,8 +34,8 @@ const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
         <li v-for="todoItem in activeTodoItems" :key="todoItem.id">
           <TodoListItemActive
             :todo-item="todoItem"
-            @on-change="() => {}"
-            @on-delete="() => {}"
+            @on-change="todoListStore.toggleItem"
+            @on-delete="todoListStore.archiveItem"
           />
         </li>
       </TransitionGroup>
@@ -44,7 +46,10 @@ const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
       </h2>
       <TransitionGroup name="list" tag="ul">
         <li v-for="todoItem in archivedTodoItems" :key="todoItem.id">
-          <TodoListItemArchived :todo-item="todoItem" @on-click="() => {}" />
+          <TodoListItemArchived
+            :todo-item="todoItem"
+            @on-click="todoListStore.reactiveItem"
+          />
         </li>
       </TransitionGroup>
     </div>
