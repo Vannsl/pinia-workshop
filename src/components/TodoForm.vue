@@ -11,6 +11,8 @@ function handleSubmit() {
   const trimmedValue = newItem.value.trim();
   if (!trimmedValue) return;
 
+  newItem.value = "";
+
   // TODO
 }
 </script>
