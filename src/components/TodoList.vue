@@ -44,7 +44,7 @@ const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
       </h2>
       <ul>
         <li v-for="todoItem in archivedTodoItems" :key="todoItem.id">
-          <TodoListItemArchived :todo-item="todoItem" />
+          <TodoListItemArchived :todo-item="todoItem" @on-click="() => {}" />
         </li>
       </ul>
     </div>

@@ -10,7 +10,7 @@ defineProps<{
   <button
     class="pl-7 flex w-full p-2 rounded hover:bg-gray-200"
     type="button"
-    @click="$emit('on-click')"
+    @click="$emit('on-click', todoItem.id)"
   >
     <span :class="{ 'line-through': todoItem.isCompleted }">
       {{ todoItem.value }}
