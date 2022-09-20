@@ -1,6 +1,7 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
 import todoItems from "@/data/todoItems.json";
 import type { TodoItem } from "@/types/TodoItem";
+import { useStatisticStore } from "./useStatisticStore";
 
 type RootState = {
   todoItems: TodoItem[];
@@ -50,6 +51,8 @@ export const useTodoListStore = defineStore("TodoList", {
     },
     addItem(item: TodoItem) {
       this.todoItems.push(item);
+      const statiticStore = useStatisticStore();
+      statiticStore.updateTodoItemsCount(this.todoItems.length);
     },
   },
 });
