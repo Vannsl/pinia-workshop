@@ -7,6 +7,16 @@ export const useStatisticStore = defineStore("Statistic", {
       stats,
     };
   },
+  actions: {
+    updateTodoItemsCount(count: number) {
+      const todoItems = this.stats.find(({ id }) => id === 2);
+      if (!todoItems)
+        throw new Error(
+          "useStatisticStore/updateTodoItemsCount: TodoItemsStats not found"
+        );
+      todoItems.value = count;
+    },
+  },
 });
 
 if (import.meta.hot) {
