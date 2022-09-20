@@ -31,13 +31,18 @@ const { t } = useI18n();
           <li class="mr-3 flex-1">
             <router-link
               to="/todo"
-              class="block py-1 md:py-3 pl-1 align-middle dark:text-white no-underline border-b-2 border-transparent hover:border-purple-500"
+              class="flex items-center py-1 md:py-3 pl-1 align-middle dark:text-white no-underline border-b-2 border-transparent hover:border-purple-500"
             >
               <i class="fa fa-tasks pr-0 md:pr-3 text-purple-500" />
               <span
                 class="pb-1 md:pb-0 text-xs md:text-base dark:text-gray-200 block md:inline-block"
               >
                 {{ t("todo_list") }}
+              </span>
+              <span
+                class="bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-400 group-hover:bg-gray-200 ml-auto inline-block py-0.5 px-3 text-xs rounded-full"
+              >
+                2
               </span>
             </router-link>
           </li>
