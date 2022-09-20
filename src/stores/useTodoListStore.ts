@@ -21,6 +21,25 @@ export const useTodoListStore = defineStore("TodoList", {
       todoItems,
     };
   },
+  getters: {
+    hasTodoItems: (state) => state.todoItems.length > 0,
+    activeTodoItems: (state) =>
+      state.todoItems
+        .filter(({ isArchived }) => !isArchived)
+        .sort((item) => (item.isCompleted ? 1 : -1)),
+    archivedTodoItems: (state) =>
+      state.todoItems.filter(({ isArchived }) => isArchived),
+    activeTodoItemsCount(): number {
+      return this.activeTodoItems.filter(({ isCompleted }) => !isCompleted)
+        .length;
+    },
+    hasActiveTodoItems() {
+      return this.activeTodoItems.length > 0;
+    },
+    hasArchivedTodoItems() {
+      return this.archivedTodoItems.length > 0;
+    },
+  },
   actions: {
     toggleItem(id: TodoItem["id"], value: boolean) {
       const item = this.todoItems.find((todoItem) => todoItem.id === id);

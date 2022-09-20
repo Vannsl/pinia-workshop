@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useTodoListStore } from "@/stores/useTodoListStore";
 import TodoListItemActive from "./TodoListItemActive.vue";
@@ -8,30 +7,19 @@ import TodoListItemArchived from "./TodoListItemArchived.vue";
 const { t } = useI18n();
 
 const todoListStore = useTodoListStore();
-
-const hasTodoItems = computed(() => todoListStore.todoItems.length > 0);
-
-const activeTodoItems = computed(() =>
-  todoListStore.todoItems
-    .filter(({ isArchived }) => !isArchived)
-    .sort((item) => (item.isCompleted ? 1 : -1))
-);
-const archivedTodoItems = computed(() =>
-  todoListStore.todoItems.filter(({ isArchived }) => isArchived)
-);
-
-const hasActiveTodoItems = computed(() => todoListStore.todoItems.length > 0);
-const hasArchivedTodoItems = computed(() => todoListStore.todoItems.length > 0);
 </script>
 
 <template>
-  <template v-if="hasTodoItems">
-    <div v-if="hasActiveTodoItems">
+  <template v-if="todoListStore.hasTodoItems">
+    <div v-if="todoListStore.hasActiveTodoItems">
       <h2 class="font-semibold text-xl mb-2">
         {{ t("your_items") }}
       </h2>
       <TransitionGroup name="list" tag="ul">
-        <li v-for="todoItem in activeTodoItems" :key="todoItem.id">
+        <li
+          v-for="todoItem in todoListStore.activeTodoItems"
+          :key="todoItem.id"
+        >
           <TodoListItemActive
             :todo-item="todoItem"
             @on-change="todoListStore.toggleItem"
@@ -40,12 +28,15 @@ const hasArchivedTodoItems = computed(() => todoListStore.todoItems.length > 0);
         </li>
       </TransitionGroup>
     </div>
-    <div v-if="hasArchivedTodoItems">
+    <div v-if="todoListStore.hasArchivedTodoItems">
       <h2 class="font-semibold text-xl mb-2">
         {{ t("deleted_items") }}
       </h2>
       <TransitionGroup name="list" tag="ul">
-        <li v-for="todoItem in archivedTodoItems" :key="todoItem.id">
+        <li
+          v-for="todoItem in todoListStore.archivedTodoItems"
+          :key="todoItem.id"
+        >
           <TodoListItemArchived
             :todo-item="todoItem"
             @on-click="todoListStore.reactiveItem"
