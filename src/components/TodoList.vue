@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import todoItems from "@/data/todoItems.json";
 import { useTodoListStore } from "@/stores/useTodoListStore";
 import TodoListItemActive from "./TodoListItemActive.vue";
 import TodoListItemArchived from "./TodoListItemArchived.vue";
@@ -11,12 +10,12 @@ const { t } = useI18n();
 const todoListStore = useTodoListStore();
 
 const activeTodoItems = computed(() =>
-  todoItems
+  todoListStore.todoItems
     .filter(({ isArchived }) => !isArchived)
     .sort((item) => (item.isCompleted ? 1 : -1))
 );
 const archivedTodoItems = computed(() =>
-  todoItems.filter(({ isArchived }) => isArchived)
+  todoListStore.todoItems.filter(({ isArchived }) => isArchived)
 );
 </script>
 
