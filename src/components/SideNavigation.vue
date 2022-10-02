@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
 import { useTodoListStore } from "@/stores/useTodoListStore";
 
 const { t } = useI18n();
-const todoListStore = useTodoListStore();
+const { activeTodoItemsCount } = storeToRefs(useTodoListStore());
 </script>
 
 <template>
@@ -44,7 +45,7 @@ const todoListStore = useTodoListStore();
               <span
                 class="bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-400 group-hover:bg-gray-200 ml-auto inline-block py-0.5 px-3 text-xs rounded-full"
               >
-                {{ todoListStore.activeTodoItemsCount }}
+                {{ activeTodoItemsCount }}
               </span>
             </router-link>
           </li>
