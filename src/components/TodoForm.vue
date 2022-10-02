@@ -9,7 +9,7 @@ const { t } = useI18n();
 
 const newItem = ref("");
 
-function createItem(value: TodoItem["value"]) {
+function createItem(value: TodoItem["value"]): TodoItem {
   return {
     id: nanoid(),
     value,
