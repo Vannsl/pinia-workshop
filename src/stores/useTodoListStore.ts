@@ -1,8 +1,13 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
 import todoItems from "@/data/todoItems.json";
+import type { TodoItem } from "@/types/TodoItem";
+
+type RootState = {
+  todoItems: TodoItem[];
+};
 
 export const useTodoListStore = defineStore("TodoList", {
-  state: () => {
+  state: (): RootState => {
     return {
       todoItems,
     };
@@ -24,6 +29,27 @@ export const useTodoListStore = defineStore("TodoList", {
     },
     hasArchivedTodoItems() {
       return this.archivedTodoItems.length > 0;
+    },
+  },
+  actions: {
+    setIsCompleted(id: TodoItem["id"], value: boolean) {
+      const item = this.todoItems.find((todoItem) => todoItem.id === id);
+      if (!item)
+        throw new Error(
+          `useTodoListStore/toggleItem: Item with id ${id} could not be found.`
+        );
+      item.isCompleted = value;
+    },
+    setIsArchived(id: TodoItem["id"], state: boolean) {
+      const item = this.todoItems.find((todoItem) => todoItem.id === id);
+      if (!item)
+        throw new Error(
+          `useTodoListStore/toggleActiveState: Item with id ${id} could not be found.`
+        );
+      item.isArchived = state;
+    },
+    addItem(item: TodoItem) {
+      this.todoItems.push(item);
     },
   },
 });

@@ -22,8 +22,8 @@ const todoListStore = useTodoListStore();
         >
           <TodoListItemActive
             :todo-item="todoItem"
-            @on-change="() => {}"
-            @on-delete="() => {}"
+            @on-change="todoListStore.setIsCompleted"
+            @on-delete="(id) => todoListStore.setIsArchived(id, true)"
           />
         </li>
       </TransitionGroup>
@@ -37,7 +37,10 @@ const todoListStore = useTodoListStore();
           v-for="todoItem in todoListStore.archivedTodoItems"
           :key="todoItem.id"
         >
-          <TodoListItemArchived :todo-item="todoItem" @on-click="() => {}" />
+          <TodoListItemArchived
+            :todo-item="todoItem"
+            @on-click="(id) => todoListStore.setIsArchived(id, false)"
+          />
         </li>
       </TransitionGroup>
     </div>
