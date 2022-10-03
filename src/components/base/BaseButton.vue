@@ -1,10 +1,12 @@
 <script setup lang="ts">
 interface Props {
   colorTheme?: "primary" | "ghost";
+  isLoading?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   colorTheme: "primary",
+  isLoading: false,
 });
 
 const colorClassesConfig = {
@@ -15,11 +17,13 @@ const colorClassesConfig = {
 };
 
 const colorClasses = colorClassesConfig[props.colorTheme];
+const loadingClasses = "opacity-50 cursor-wait";
 </script>
 
 <template>
   <button
-    :class="colorClasses"
+    :aria-disabled="isLoading"
+    :class="[colorClasses, isLoading && loadingClasses]"
     class="border font-bold py-2 px-4 rounded"
     type="button"
   >

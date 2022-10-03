@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { ref } from "vue";
+import { useStore } from "vuex";
 import MainHeader from "@/components/MainHeader.vue";
 import TodoForm from "../components/TodoForm.vue";
 import TodoList from "../components/TodoList.vue";
 
 const { t } = useI18n();
 
-const isUserAuthenticated = ref(true);
+const vuexStore = useStore();
+const isUserAuthenticated = computed(
+  () => vuexStore.getters.isUserAuthenticated
+);
 </script>
 
 <template>
