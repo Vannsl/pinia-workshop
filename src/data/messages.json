@@ -17,7 +17,7 @@
     "add": "Add",
     "no_todos_yet": "Add your first Todo!",
     "your_items": "Your items",
-    "deleted_items": "Deleted items",
+    "archived_items": "Deleted items",
     "delete": "Delete"
   },
   "de": {
@@ -38,7 +38,7 @@
     "add": "Hinzufügen",
     "no_todos_yet": "Füge dein erstes Todo hinzu!",
     "your_items": "Deine Todos",
-    "deleted_items": "Gelöschte Todos",
+    "archived_items": "Gelöschte Todos",
     "delete": "Löschen"
   }
 }

@@ -7,8 +7,6 @@ import TodoListItemArchived from "./TodoListItemArchived.vue";
 
 const { t } = useI18n();
 
-const hasTodoItems = computed(() => todoItems.length > 0);
-
 const activeTodoItems = computed(() =>
   todoItems
     .filter(({ isArchived }) => !isArchived)
@@ -17,14 +15,11 @@ const activeTodoItems = computed(() =>
 const archivedTodoItems = computed(() =>
   todoItems.filter(({ isArchived }) => isArchived)
 );
-
-const hasActiveTodoItems = computed(() => activeTodoItems.value.length > 0);
-const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
 </script>
 
 <template>
-  <template v-if="hasTodoItems">
-    <div v-if="hasActiveTodoItems">
+  <template v-if="true">
+    <div v-if="true">
       <h2 class="font-semibold text-xl mb-2">
         {{ t("your_items") }}
       </h2>
@@ -38,9 +33,9 @@ const hasArchivedTodoItems = computed(() => archivedTodoItems.value.length > 0);
         </li>
       </TransitionGroup>
     </div>
-    <div v-if="hasArchivedTodoItems">
+    <div v-if="true">
       <h2 class="font-semibold text-xl mb-2">
-        {{ t("deleted_items") }}
+        {{ t("archived_items") }}
       </h2>
       <TransitionGroup name="list" tag="ul">
         <li v-for="todoItem in archivedTodoItems" :key="todoItem.id">
