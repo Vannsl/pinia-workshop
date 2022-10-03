@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from "pinia";
 import type { StatColor } from "@/types/StatColor";
-import stats from "@/data/stats.json";
 import BaseMetricCard from "@/components/base/BaseMetricCard.vue";
 import { useStatisticStore } from "@/stores/useStatisticStore";
 
-const statisticsStore = useStatisticStore();
+const { stats } = storeToRefs(useStatisticStore());
 </script>
 
 <template>
