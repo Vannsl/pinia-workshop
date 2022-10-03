@@ -52,7 +52,8 @@ export const useTodoListStore = defineStore("TodoList", {
     addItem(item: TodoItem) {
       this.todoItems.push(item);
       const statiticStore = useStatisticStore();
-      statiticStore.updateTodoItemsCount(this.todoItems.length);
+      // statiticStore.updateTodoItemsCount(this.todoItems.length);
+      statiticStore.updateTodoItemsCount();
     },
   },
 });

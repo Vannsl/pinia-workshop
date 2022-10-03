@@ -1,5 +1,6 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
 import stats from "@/data/stats.json";
+import { useTodoListStore } from "./useTodoListStore";
 
 export const useStatisticStore = defineStore("Statistic", {
   state: () => {
@@ -8,13 +9,22 @@ export const useStatisticStore = defineStore("Statistic", {
     };
   },
   actions: {
-    updateTodoItemsCount(count: number) {
+    // updateTodoItemsCount(count: number) {
+    //   const todoItems = this.stats.find(({ id }) => id === 2);
+    //   if (!todoItems)
+    //     throw new Error(
+    //       "useStatisticStore/updateTodoItemsCount: TodoItemsStats not found"
+    //     );
+    //   todoItems.value = `${count}`;
+    // },
+    updateTodoItemsCount() {
+      const todoListStore = useTodoListStore();
       const todoItems = this.stats.find(({ id }) => id === 2);
       if (!todoItems)
         throw new Error(
           "useStatisticStore/updateTodoItemsCount: TodoItemsStats not found"
         );
-      todoItems.value = `${count}`;
+      todoItems.value = `${todoListStore.todoItems.length}`;
     },
   },
 });
