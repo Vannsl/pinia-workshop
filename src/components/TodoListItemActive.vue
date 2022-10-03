@@ -3,7 +3,6 @@ import { useI18n } from "vue-i18n";
 import type { TodoItem } from "@/types/TodoItem";
 import IconBin from "./icons/IconBin.vue";
 
-/* eslint-disable */
 const props = defineProps<{
   todoItem: TodoItem;
 }>();
@@ -13,13 +12,13 @@ const emit = defineEmits(["on-input-change", "on-button-click"]);
 const { t } = useI18n();
 
 function handleInputChange(event: Event) {
-  // TODO
+  const target = event.target as HTMLInputElement;
+  emit("on-input-change", props.todoItem.id, target.checked);
 }
 
 function handleButtonClick() {
-  // TODO
+  emit("on-button-click", props.todoItem.id);
 }
-/* eslint-enable */
 </script>
 
 <template>

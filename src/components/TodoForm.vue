@@ -3,9 +3,12 @@ import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { nanoid } from "nanoid";
 import type { TodoItem } from "@/types/TodoItem";
+import { useTodoListStore } from "@/stores/useTodoListStore";
 import BaseButton from "./base/BaseButton.vue";
 
 const { t } = useI18n();
+
+const { addItem } = useTodoListStore();
 
 const newItem = ref("");
 
@@ -25,8 +28,7 @@ function handleSubmit() {
   newItem.value = "";
   const item = createItem(trimmedValue);
 
-  // TODO
-  console.log(item);
+  addItem(item);
 }
 </script>
 
