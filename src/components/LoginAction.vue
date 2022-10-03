@@ -1,27 +1,20 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { useAuthenticationStore } from "@/stores/useAuthenticationStore";
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
-import { useStore } from "vuex";
 import BaseButton from "./base/BaseButton.vue";
 import IconUser from "./icons/IconUser.vue";
 import IconUserPlus from "./icons/IconUserPlus.vue";
 
 const { t } = useI18n();
 
-const vuexStore = useStore();
+const authenticationStore = useAuthenticationStore();
 const isLoading = ref(false);
-
-const isUserAuthenticated = computed(
-  () => vuexStore.getters.isUserAuthenticated
-);
-const isUserAuthenticatedAsAdmin = computed(
-  () => vuexStore.getters.isUserAuthenticatedAsAdmin
-);
 
 const signIn = async (isAdmin: boolean) => {
   isLoading.value = true;
   try {
-    await vuexStore.dispatch("signIn", { isAdmin });
+    await authenticationStore.signIn(isAdmin);
   } catch (e) {
     console.error(e);
   } finally {
@@ -31,7 +24,7 @@ const signIn = async (isAdmin: boolean) => {
 const signOut = async () => {
   isLoading.value = true;
   try {
-    await vuexStore.dispatch("signOut");
+    await authenticationStore.signOut();
   } catch (e) {
     console.error(e);
   } finally {
@@ -41,7 +34,7 @@ const signOut = async () => {
 </script>
 
 <template>
-  <div v-if="!isUserAuthenticated" class="flex gap-4">
+  <div v-if="!authenticationStore.isUserAuthenticated" class="flex gap-4">
     <BaseButton @click="signIn(false)" :is-loading="isLoading">
       <IconUser class="inline h-4 w-4 mr-2" />
       {{ t("login") }}
@@ -58,7 +51,9 @@ const signOut = async () => {
     @click="signOut"
   >
     <component
-      :is="isUserAuthenticatedAsAdmin ? IconUserPlus : IconUser"
+      :is="
+        authenticationStore.isUserAuthenticatedAsAdmin ? IconUserPlus : IconUser
+      "
       class="inline h-4 w-4 mr-2"
     />
     {{ t("logout") }}

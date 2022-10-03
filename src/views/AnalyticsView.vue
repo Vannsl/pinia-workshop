@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { useStore } from "vuex";
+import { storeToRefs } from "pinia";
 import MainHeader from "@/components/MainHeader.vue";
 import AnalyticsStats from "@/components/AnalyticsStats.vue";
+import { useAuthenticationStore } from "@/stores/useAuthenticationStore";
 
 const { t } = useI18n();
 
-const vuexStore = useStore();
-const isUserAuthenticatedAsAdmin = computed(
-  () => vuexStore.getters.isUserAuthenticatedAsAdmin
-);
+const { isUserAuthenticatedAsAdmin } = storeToRefs(useAuthenticationStore());
 </script>
 
 <template>

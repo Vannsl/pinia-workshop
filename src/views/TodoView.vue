@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { storeToRefs } from "pinia";
 import { useI18n } from "vue-i18n";
-import { useStore } from "vuex";
 import MainHeader from "@/components/MainHeader.vue";
 import TodoForm from "../components/TodoForm.vue";
 import TodoList from "../components/TodoList.vue";
+import { useAuthenticationStore } from "@/stores/useAuthenticationStore";
 
 const { t } = useI18n();
 
-const vuexStore = useStore();
-const isUserAuthenticated = computed(
-  () => vuexStore.getters.isUserAuthenticated
-);
+const { isUserAuthenticated } = storeToRefs(useAuthenticationStore());
 </script>
 
 <template>
