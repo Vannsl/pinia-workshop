@@ -12,11 +12,11 @@ const emit = defineEmits(["on-change", "on-delete"]);
 
 const { t } = useI18n();
 
-function handleChange(event: Event) {
+function handleInputChange(event: Event) {
   // TODO
 }
 
-function handleDelete() {
+function handleButtonClick() {
   // TODO
 }
 /* eslint-enable */
@@ -33,7 +33,7 @@ function handleDelete() {
         :id="`todo_${todoItem.id}`"
         :value="todoItem.value"
         :checked="todoItem.isCompleted"
-        @change="handleChange"
+        @change="handleInputChange"
       />
       <span :class="{ 'line-through': todoItem.isCompleted }">
         {{ todoItem.value }}
@@ -42,7 +42,7 @@ function handleDelete() {
     <button
       class="group-hover:visible invisible hover:text-blue-500 dark:hover:text-blue-200"
       type="button"
-      @click.stop="handleDelete"
+      @click.stop="handleButtonClick"
     >
       <IconBin :aria-label="t('delete')" class="w-5 h-5" />
     </button>
