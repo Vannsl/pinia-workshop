@@ -3,8 +3,10 @@ import { computed, watch, type ComponentPublicInstance } from "vue";
 import Popper from "vue3-popper";
 import { useI18n } from "vue-i18n";
 import type { ColorSchemeSlug } from "@/types/ColorSchemeSlug";
+import { useColorSchemeStore } from "@/stores/useColorSchemeStore";
 import IconSun from "./icons/IconSun.vue";
 import IconMoon from "./icons/IconMoon.vue";
+import { storeToRefs } from "pinia";
 
 interface ConfigSettings {
   slug: ColorSchemeSlug;
@@ -27,7 +29,9 @@ const config: Record<ColorSchemeSlug, ConfigSettings> = {
   },
 };
 
-const currentConfig = computed(() => config["light"]); // TODO: Replace hardcoded "light" with store state.
+const { currentColorSchemeSlug } = storeToRefs(useColorSchemeStore());
+
+const currentConfig = computed(() => config[currentColorSchemeSlug.value]);
 
 watch(
   currentConfig,
@@ -66,6 +70,7 @@ watch(
           <!-- Add v-model or change handler-->
           <input
             type="radio"
+            v-model="currentColorSchemeSlug"
             :id="colorScheme.slug"
             :value="colorScheme.slug"
             name="colorSchemeSelection"
