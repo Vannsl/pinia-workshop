@@ -27,8 +27,8 @@ const archivedTodoItems = computed(() =>
         <li v-for="todoItem in activeTodoItems" :key="todoItem.id">
           <TodoListItemActive
             :todo-item="todoItem"
-            @on-change="() => {}"
-            @on-delete="() => {}"
+            @on-input-change="() => {}"
+            @on-button-click="() => {}"
           />
         </li>
       </TransitionGroup>

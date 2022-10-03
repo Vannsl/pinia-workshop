@@ -8,7 +8,7 @@ const props = defineProps<{
   todoItem: TodoItem;
 }>();
 
-const emit = defineEmits(["on-change", "on-delete"]);
+const emit = defineEmits(["on-input-change", "on-button-click"]);
 
 const { t } = useI18n();
 
