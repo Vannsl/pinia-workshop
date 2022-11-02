@@ -13,7 +13,7 @@ const { isUserAuthenticatedAsAdmin, user } = storeToRefs(
 </script>
 
 <template>
-  <MainHeader v-if="user" :title="user?.fullName" color-theme="pink" />
+  <MainHeader v-if="user" :title="user.fullName" color-theme="pink" />
   <AnalyticsStats v-if="isUserAuthenticatedAsAdmin" />
   <p v-else class="mt-6 text-center">
     {{ t("authenticate_as_admin_to_access") }}
