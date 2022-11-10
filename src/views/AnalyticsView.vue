@@ -7,11 +7,13 @@ import { useAuthenticationStore } from "@/stores/useAuthenticationStore";
 
 const { t } = useI18n();
 
-const { isUserAuthenticatedAsAdmin } = storeToRefs(useAuthenticationStore());
+const { isUserAuthenticatedAsAdmin, user } = storeToRefs(
+  useAuthenticationStore()
+);
 </script>
 
 <template>
-  <MainHeader :title="t('statistics')" color-theme="pink" />
+  <MainHeader v-if="user" :title="user.fullName" color-theme="pink" />
   <AnalyticsStats v-if="isUserAuthenticatedAsAdmin" />
   <p v-else class="mt-6 text-center">
     {{ t("authenticate_as_admin_to_access") }}
